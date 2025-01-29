@@ -1,0 +1,42 @@
+Sub FillRandomNumbers()
+    Dim ws As Worksheet
+    Dim rng As Range
+    Dim cell As Range
+    
+    ' Set the worksheet (modify if needed)
+    Set ws = ActiveSheet
+    
+    ' Set the target range
+    Set rng = ws.Range("A1:C30")
+    
+    ' Loop through each cell in the range
+    For Each cell In rng
+        cell.Value = Application.WorksheetFunction.RandBetween(1, 1000)
+    Next cell
+    
+    ' Cleanup
+    Set rng = Nothing
+    Set ws = Nothing
+End Sub
+
+Function CustomSum(rng As Range) As Double
+Dim cell As Range
+Dim total As Double
+total = 0
+For Each cell In rng
+total = total + cell.Value
+Next cell
+CustomSum = total
+End Function
+
+Function CustomMax(rng As Range) As Double
+Dim cell As Range
+Dim max_value As Double
+max_value = -1E+30
+For Each cell In rng
+If cell.Value > max_value Then
+max_value = cell.Value
+End If
+Next cell
+CustomMax = max_value
+End Function

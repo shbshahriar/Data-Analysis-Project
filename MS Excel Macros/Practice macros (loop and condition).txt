@@ -1,0 +1,137 @@
+Sub Create_variable()
+    ' Declare a variable named Var to store the value
+    Var = "check variable"
+    
+    ' Write the value of the variable to cells A1 to A3 on the second sheet
+    Sheets(2).Range("A1:A3") = Var
+End Sub
+' For LOOP Example
+Sub For_loop()
+
+    Dim x As Integer
+    ' Start a loop that runs from 1 to 10 as step 2
+    For x = 1 To 10 Step 2
+        ' Display the current value of x in a message box
+        MsgBox x
+    ' Move to the next value in the loop (increment x by 1 automatically)
+    Next
+End Sub
+Sub ForLoop2()
+    ' Declare variable x as an Integer
+    Dim x As Integer
+    
+    ' Start loop from 1 to 56
+    For x = 1 To 56
+        ' Set the value of the cell in column 1 (A) to the value of x
+        Sheets(2).Cells(x, 1).Value = x
+        
+        ' Set the background color of the cell in column 2 (B) to ColorIndex x
+        ' ColorIndex will be the same as the value of x (1 -> ColorIndex 1, 56 -> ColorIndex 56)
+        Sheets(2).Cells(x, 2).Interior.ColorIndex = x
+    Next
+End Sub
+
+Sub ForLoop3()
+    ' Declare variable x as an Integer
+    Dim x As Integer
+    
+    ' Start loop from 56 down to 1 (reverse order)
+    For x = 56 To 1 Step -1
+        ' Set the value of the cell in column 3 (C) to the value of x
+        Sheets(2).Cells(x, 3).Value = x
+        
+        ' Set the background color of the cell in column 4 (D) to ColorIndex (57 - x)
+        ' The ColorIndex starts at 56 for x = 1 and decreases as x increases
+        ' For x = 1 -> ColorIndex = 56, For x = 56 -> ColorIndex = 1
+        Sheets(2).Cells(x, 4).Interior.ColorIndex = 57 - x
+    Next
+End Sub
+
+Sub ForEachLoop4()
+    ' Declare a Range variable i to iterate over the range
+    Dim i As Range
+    
+    ' Loop through each cell in the range E1:E56 of Sheet 2
+    For Each i In Sheets(2).Range("E1:E56")
+        
+        ' Set the value of the current cell in column E to the row number
+        i.Value = i.row
+        
+        ' Set the interior color of the corresponding cell in column F (6th column) to the row number's ColorIndex
+        Sheets(2).Cells(i.row, 6).Interior.ColorIndex = i.row
+    
+    ' End of the For Each loop
+    Next
+End Sub
+
+Sub DoWhileExample()
+    Dim cell As Range
+    Dim row As Integer
+
+    ' First Loop: For Each loop to populate column G with row numbers
+    For Each cell In Sheets(2).Range("G1:G10")
+        cell.Value = cell.row ' Assign the row number to column G
+    Next cell
+
+    ' Second Loop: Do While loop to check and write in column H
+    row = 1 ' Start from the first row
+    Do While Sheets(2).Cells(row, 7).Value <> "" ' Check if column G (7th column) is not empty
+        Sheets(2).Cells(row, 8).Value = "Not Null" ' Write "Not Null" in column H
+        row = row + 1 ' Move to the next row
+    Loop
+End Sub
+
+Sub DoUntilLoop()
+Dim i As Integer
+i = 10
+Do Until i < 6
+Sheets(2).Cells(i, 9).Value = i - 5
+i = i - 1
+Loop
+End Sub
+Sub extras()
+Dim i As Range
+
+For Each i In Sheets(2).Range("B1:B2")
+cellscolor = Sheets(2).Cells(i.row, 2).Interior.Color
+red = (cellColor Mod 256)
+green = (cellColor \ 256) Mod 256
+blue = (cellColor \ 256 ^ 2) Mod 256
+MsgBox "RGB : " & red & ", " & green & ", " & blue
+Next
+End Sub
+
+Sub extras2()
+Dim cell As Range
+For Each cell In Sheets(2).Range("j1:j10")
+    user_input = InputBox("Enter the numbr ")
+    cell.Value = user_input
+Next
+
+End Sub
+Sub extras2_2()
+    Dim cell As Range
+    Dim result As Range
+
+    ' Loop through each cell in J1:J10
+    For Each cell In Sheets(2).Range("J1:J10")
+        ' Assign corresponding result cell in column K (same row as J)
+        Set result = cell.Offset(0, 1) ' Moves 1 column right from J to K
+
+        ' Apply grading conditions
+        If cell.Value >= 80 Then
+            result.Value = "Great"
+        ElseIf cell.Value >= 70 Then
+            result.Value = "Better"
+        ElseIf cell.Value >= 60 Then
+            result.Value = "Good"
+        ElseIf cell.Value >= 33 Then
+            result.Value = "Not Bad"
+        ElseIf cell.Value > 0 Then
+            result.Value = "Fail"
+        Else
+            result.Value = "N/A"
+        End If
+    Next cell
+End Sub
+

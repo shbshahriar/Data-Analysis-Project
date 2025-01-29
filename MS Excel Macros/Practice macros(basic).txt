@@ -1,0 +1,267 @@
+
+'1.first msg box
+Sub FirstMsg()
+MsgBox "This is first text for msgbox"
+MsgBox 100
+End Sub
+
+
+'2.cell_reffer
+Sub CellReffer()
+'for_active_cell
+ActiveCell.Value = "active cell" 'there active cell means A1
+'cell_call
+Cells(2, 1) = "Cells"
+'using_range
+Range("A3") = "Singular range"
+Range("A4:A5") = "Multiple range"
+End Sub
+
+'3.Copy_paste
+Sub CopyPaste()
+Range("A6") = "Copy"
+Range("A7") = "Paste"
+'copy_method
+Range("A8:A9") = Range("A6:A7").Value
+End Sub
+
+'4.format_font
+Sub ForamtFont()
+Range("A1:A9").Font.Name = "Arial" ' Set font name
+    Range("A1:A9").Font.Size = 12 ' Set font size
+    Range("A1:A9").Font.Bold = True ' Make text bold
+    Range("A1:A9").Font.Italic = True ' Make text italic
+    Range("A1:A9").Font.Underline = xlUnderlineStyleSingle ' Add single underline
+    Range("A1:A9").Font.Color = RGB(0, 128, 0) ' Set font color to green
+End Sub
+
+'5.format_font_with_Block
+Sub ForamtFontWithBloack()
+    With Range("A1:A9").Font
+        .Name = "Arial" ' Set font name
+        .Size = 12 ' Set font size
+        .Bold = True ' Make text bold
+        .Italic = True ' Make text italic
+        .Underline = xlUnderlineStyleSingle ' Single underline
+        .Color = RGB(0, 0, 255) ' Set font color to blue
+    End With
+End Sub
+
+'6.Borders_With_Variations
+Sub BordersWithVariations()
+    ' Apply All Borders with Thin Line
+    With Range("A1:A9").Borders
+        .LineStyle = xlContinuous ' Continuous line
+        .Weight = xlThin ' Thin line weight
+    End With
+    
+    ' Apply Thick Outside Borders Only
+    With Range("A1:A9").Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .Weight = xlThick
+    End With
+    With Range("A1:A9").Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .Weight = xlThick
+    End With
+    With Range("A1:A9").Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .Weight = xlThick
+    End With
+    With Range("A1:A9").Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .Weight = xlThick
+    End With
+    
+    ' Apply Dotted Inside Borders
+    With Range("A1:A9").Borders(xlInsideVertical)
+        .LineStyle = xlDot ' Dotted line for inside vertical borders
+        .Weight = xlThin
+    End With
+    With Range("A1:A9").Borders(xlInsideHorizontal)
+        .LineStyle = xlDot ' Dotted line for inside horizontal borders
+        .Weight = xlThin
+    End With
+    
+    ' Change Color of Borders
+    With Range("A1:A9").Borders
+        .Color = RGB(0, 128, 0) ' Green borders
+    End With
+End Sub
+'7.alignment
+Sub ApplyAlignmentVariations()
+    ' Center Alignment (Horizontally and Vertically)
+    Range("A1:A9").HorizontalAlignment = xlCenter ' Horizontal alignment: Center
+    Range("A1:A9").VerticalAlignment = xlCenter   ' Vertical alignment: Center
+
+    ' Left Alignment
+    Range("A1:A9").HorizontalAlignment = xlLeft ' Horizontal alignment: Left
+
+    ' Right Alignment
+    Range("A1:A9").HorizontalAlignment = xlRight ' Horizontal alignment: Right
+
+    ' Wrap Text
+    Range("A1:A9").WrapText = True ' Enable wrapping text to fit within the cell
+
+    ' Disable Wrap Text
+    Range("A1:A9").WrapText = False ' Disable wrapping text
+
+    ' Orientation (Rotate Text)
+    Range("A1:A9").Orientation = 45 ' Rotates text at 45 degrees
+    Range("A1:A9").Orientation = 90 ' Rotates text vertically (90 degrees)
+    Range("A1:A9").Orientation = 0  ' Normal horizontal text
+
+    ' Indentation (Only works for left or right alignment)
+    Range("A1:A9").IndentLevel = 2 ' Indent text by 2 levels
+    Range("A1:A9").IndentLevel = 0 ' Remove indentation
+
+    ' Shrink to Fit
+    Range("A1:A9").ShrinkToFit = True ' Shrink text to fit within the cell
+    Range("A1:A9").ShrinkToFit = False ' Disable shrink-to-fit
+End Sub
+'8.font_color
+Sub FontColor()
+    ' Change font color to Red
+    Range("A1:A9").Font.Color = vbRed ' Red
+
+    ' Change font color to Green
+    Range("A1:A9").Font.Color = vbGreen ' Green
+
+    ' Change font color to Blue
+    Range("A1:A9").Font.Color = vbBlue ' Blue
+
+    ' Change font color to Black
+    Range("A1:A9").Font.Color = vbBlack ' Black
+
+    ' Change font color to White
+    Range("A1:A9").Font.Color = vbWhite ' White (useful for dark backgrounds)
+
+    ' Change font color to Yellow
+    Range("A1:A9").Font.Color = vbYellow ' Yellow
+
+    ' Change font color to Cyan
+    Range("A1:A9").Font.Color = vbCyan ' Cyan
+
+    ' Change font color to Magenta
+    Range("A1:A9").Font.Color = vbMagenta ' Magenta
+End Sub
+'9.Background_Color
+Sub BackgroundColor()
+    ' Change background color to Red
+    Range("A1:A9").Interior.Color = vbRed ' Red
+
+    ' Change background color to Green
+    Range("A1:A9").Interior.Color = vbGreen ' Green
+
+    ' Change background color to Blue
+    Range("A1:A9").Interior.Color = vbBlue ' Blue
+
+    ' Change background color to Yellow
+    Range("A1:A9").Interior.Color = vbYellow ' Yellow
+
+    ' Change background color to Cyan
+    Range("A1:A9").Interior.Color = vbCyan ' Cyan
+
+    ' Change background color to Magenta
+    Range("A1:A9").Interior.Color = vbMagenta ' Magenta
+
+    ' Change background color to White
+    Range("A1:A9").Interior.Color = vbWhite ' White
+
+    ' Change background color to Black
+    Range("A1:A9").Interior.Color = vbBlack ' Black
+End Sub
+'10.Paste_Values_Only
+Sub PasteValuesOnly()
+    ' Copy the range
+    Range("A1:A9").Copy
+
+    ' Paste only the values to a different range
+    Range("B1:B9").PasteSpecial Paste:=xlPasteValues
+
+    ' Clear clipboard after pasting
+    Application.CutCopyMode = False
+End Sub
+'11.Paste_Formats_Only
+Sub PasteFormatsOnly()
+    ' Copy the range
+    Range("A1:A9").Copy
+
+    ' Paste only the formats to a different range
+    Range("B1:B9").PasteSpecial Paste:=xlPasteFormats
+
+    ' Clear clipboard after pasting
+    Application.CutCopyMode = False
+End Sub
+'12.Clear_Formats
+Sub ClearFormats()
+    ' Clear only the formatting in the range (keep the values)
+    Range("A1:A9").ClearFormats
+End Sub
+'13.Delete_Rows
+Sub DeleteRows()
+    ' Delete entire rows containing the range
+    Range("A1:A9").EntireRow.Delete
+End Sub
+'13.Delete_Columns
+Sub DeleteColumns()
+    ' Delete entire columns containing the range
+    Range("A1:A9").EntireColumn.Delete
+End Sub
+'14.Insert_Row
+Sub InsertRow()
+    ' Insert a row above the range that includes cell A3
+    Range("A3").EntireRow.Insert
+End Sub
+'14.Insert_Column
+Sub InsertColumn()
+    ' Insert a column before the range that includes cell B1
+    Range("B1").EntireColumn.Insert
+End Sub
+'15.Row_Height_and_Col_Width
+Sub RowHeightWithRange()
+    Range("A3").EntireRow.RowHeight = 25 ' Set height for Row with A3
+End Sub
+
+Sub ColWidthWithRange()
+    Range("B1").EntireColumn.ColumnWidth = 15 ' Set width for Column with B1
+End Sub
+Sub AutoFitRows()
+    Rows("1:5").AutoFit ' Autofit Rows 1-5
+End Sub
+Sub AutoFitColumns()
+    Columns("A:C").AutoFit ' Autofit Columns A-C
+End Sub
+Sub HeightAndWidth()
+    With Range("A1:C5")
+        .EntireRow.RowHeight = 25 ' Set row height
+        .EntireColumn.ColumnWidth = 15 ' Set column width
+    End With
+End Sub
+
+'16.select and activate cells
+Sub SelectCell()
+    Range("B2").Select ' Select cell B2
+End Sub
+Sub ActivateCell()
+    Range("C3").Activate ' Activate cell C3
+End Sub
+'16.hide and unhide rows and columns
+Sub HideRows()
+    Rows("3:5").Hidden = True ' Hide Rows 3 to 5
+End Sub
+Sub UnhideRows()
+    Rows("3:5").Hidden = False ' Unhide Rows 3 to 5
+End Sub
+Sub HideColumns()
+    Columns("B:D").Hidden = True ' Hide Columns B to D
+End Sub
+Sub UnhideColumns()
+    Columns("B:D").Hidden = False ' Unhide Columns B to D
+End Sub
+
+
+
+
+
+
